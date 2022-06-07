@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int findfloor(int arr[], int n, int x)
+{
+    int l = 0, r = n - 1;
+    int res = -1;
+    while (l <= r)
+    {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == x)
+            return arr[mid];
+        else if (arr[mid] < x)
+        {
+            res = mid;
+            l = mid + 1;
+        }
+        else
+            r = mid - 1;
+    }
+    return arr[res];
+}
+int findceil(int arr[], int n, int x)
+{
+    int l = 0, r = n - 1;
+    int res = -1;
+    while (l <= r)
+    {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == x)
+            return arr[mid];
+        else if (arr[mid] < x)
+            l = mid + 1;
+        else
+        {
+            res = mid;
+            r = mid - 1;
+        }
+    }
+    return arr[res];
+}
+
+int main()
+{
+    int n, x;
+    cin >> n >> x;
+    int arr[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    cout << findfloor(arr, n, x) << " " << findceil(arr, n, x);
+}
